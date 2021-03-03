@@ -1,0 +1,38 @@
+<%= form_with(model: @post) do |form| %>
+    
+    <h1 class="center">Crear Post</h1>
+
+    <div class="input-field">
+        
+        <i class="material-icons prefix">title</i>
+        <%= form.label :title%>
+        <%= form.text_field :title%>
+    </div>
+
+    <div class="input-field">
+        <i class="material-icons prefix">short_text</i>
+        <%= form.label :content %>
+        <%= form.text_area :content, class:"materialize-textarea"%>
+    </div>
+
+    <div class="input-field">
+        <i class="material-icons prefix">image</i>
+        <%= form.label :img_url%>
+        <%= form.text_field :img_url%>
+    </div>
+
+    <%= form.submit "Crear Post", class:"btn"%>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@post.errors.count, "error") %> prohibited this
+                post from being saved:</h2>
+                <ul>
+                <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+<% end %>
